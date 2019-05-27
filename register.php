@@ -4,6 +4,22 @@ require_once 'assets/config/bootstrap.php';
 // Traitement du formulaire d'inscription
 if (isset($_POST['register'])) {
 
+       // Rechercher l'utilisateur sur mySQL
+      $req = $pdo->prepare(
+        'SELECT *
+        FROM utilisateur
+        WHERE email = :email'
+      );
+      $req->bindParam(':email', $_POST['email']);
+      $req->execute();
+
+      $email = $req->fetch(PDO::FETCH_ASSOC);
+
+
+      
+
+
+
   if (empty($_POST['pseudo']) || empty($_POST['email']) || empty($_POST['mdp'])) {
     echo 'Tous les champs doivent être remplis';
   }
@@ -15,6 +31,11 @@ if (isset($_POST['register'])) {
   elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     echo 'adresse email invalide';
   }
+   // Vérifier si l'email existe déja dans la bdd
+   elseif ($email) {
+    echo 'adresse email existante';
+  }
+  
     // Vérifier la longeur du mdp
   elseif (strlen($_POST['mdp']) < 3 || strlen($_POST['mdp']) > 20) {
     echo 'Le MDP doit contenir entre 3 & 20 caractères';
