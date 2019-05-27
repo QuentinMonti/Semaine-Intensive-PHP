@@ -9,7 +9,7 @@ require 'assets/config/bootstrap.php';
     ?>
 
     <div class="container border mt-4 p-4">
-    <h1>Bienvenue sur la boutique !  <?php if(isConnected()) {
+    <h1>Bienvenue sur notre réseau !  <?php if(isConnected()) {
         print_r(getUserInfo('pseudo'));
     }?></h1>
     </div>
