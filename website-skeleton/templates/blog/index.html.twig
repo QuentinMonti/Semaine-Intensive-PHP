@@ -1,38 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BlogController!{% endblock %}
+{% block title %}Hello BlogController!
+{% endblock %}
 
 {% block body %}
-<section class="articles">
-    <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 27/05/2019 à 16:00 dans la catégorie Serie</div>
+
+  {% for article in articles %}
+    <section class="articles">
+      <article>
+        <h2>{{ article.title }}</h2>
+        <div class="metadata">Ecrit le
+          {{ article.createdAt | date('d/m/Y') }}
+          à
+          {{ article.createdAt | date('H:i') }}
+          dans la catégorie Serie</div>
         <div class="content">
-            <img src="http://placehold.it/350x150{{ path('blog_show') }}" alt="">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo reiciendis mollitia quam similique delectus necessitatibus.</p>
-            <p>Voluptate temporibus enim ea natus, labore ipsa voluptatem ipsum magni suscipit iure voluptates quos sit.</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a>
+          <img alt="" src="{{ article.image }}">
+          {{ article.content | raw }}
+          <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
         </div>
-    </article>
-    <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 27/05/2019 à 16:00 dans la catégorie Serie</div>
-        <div class="content">
-            <img src="http://placehold.it/350x150{{ path('blog_show') }}" alt="">
-            <p>Molestiae perspiciatis consequatur a! Cumque ad vero minima dolore molestiae quae expedita repellat est necessitatibus?</p>
-            <p>Ad possimus, expedita ullam tenetur voluptates in unde! Commodi obcaecati minus dolores inventore cumque nulla.</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a>
-        </div>
-    </article>
-    <article>
-        <h2>Titre de l'article</h2>
-        <div class="metadata">Ecrit le 27/05/2019 à 16:00 dans la catégorie Serie</div>
-        <div class="content">
-            <img src="http://placehold.it/350x150{{ path('blog_show') }}" alt="">
-            <p>Facere perspiciatis dolore dolorum? Magni, unde excepturi ratione error officia molestias dolorem vero at aperiam.</p>
-            <p>Sapiente nesciunt ipsa non voluptates sunt deleniti, minima aliquam dolorem aliquid quo voluptate quae quisquam.</p>
-            <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a>
-        </div>
-    </article>
-</section>
+      </article>
+    {% endfor %}
+
+
+  </section>
+
 {% endblock %}
