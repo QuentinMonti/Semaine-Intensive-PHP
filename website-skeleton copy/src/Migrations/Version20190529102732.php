@@ -25,7 +25,7 @@ final class Version20190529102732 extends AbstractMigration
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, title VARCHAR(255) NOT NULL, description LONGTEXT DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE article ADD category_id INT NOT NULL');
         $this->addSql('ALTER TABLE article ADD CONSTRAINT FK_23A0E6612469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
-        $this->addSql('CREATE INDEX IDX_23A0E6612469DE2 ON article (author_id)');
+        $this->addSql('CREATE INDEX IDX_23A0E6612469DE2 ON article (category_id)');
     }
 
     public function down(Schema $schema) : void

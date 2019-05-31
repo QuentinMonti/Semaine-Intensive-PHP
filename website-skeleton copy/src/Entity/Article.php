@@ -43,10 +43,6 @@ class Article
     private $createdAt;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $idAuthor;
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="articles")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -115,18 +111,6 @@ class Article
         return $this;
     }
 
-    public function getIdAuthor(): ?int
-    {
-        return $this->idAuthor;
-    }
-
-    public function setIdAuthor(int $idAuthor): self
-    {
-        $this->idAuthor = $idAuthor;
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -138,7 +122,6 @@ class Article
 
         return $this;
     }
-    
 
     /**
      * @return Collection|Comment[]

@@ -18,13 +18,7 @@
         <div class="content">
           <img alt="" src="{{ article.image }}">
           {{ article.content | raw }}
-          {% if app.user %}
-            <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
-          {% else %}
-            <a href="{{path('security_login')}}" class="btn btn-primary">
-              Connectez vous pour lire l'article !
-            </a>
-          {% endif %}
+          <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
         </div>
       </article>
     {% endfor %}
